@@ -1,0 +1,31 @@
+CommitLint:
+  config_name: regex
+  regex: (^(feat|fix|build|chore|ci|docs|style|refactor|perf|test|sandbox)(\([a-zA-Z0-9\-\_]+\))?:\ (.+)$|^Merge branch(.+)$)
+codecov:
+  status:
+    project:
+      default:
+        minimum_coverage: 95%
+        if_not_found: "success" # success or error or warning  # 没有报告时 是否至成功
+        paths:
+          - "!*_test.go"
+          - "!*_mock.go"
+          - "!**/mock_*.go"
+          - "!internal/crypto/"
+          - "!internal/kv/"
+          - "!internal/rpc/"
+          - "!internal/tcc/"
+          - "!token/init.go"
+    diff: # 具体下级配置同上面的 project， 只对 diff 的代码有效
+      default:
+        minimum_coverage: 99% # SDK 的代码必须高覆盖率要求，不要降低该值
+        paths:
+          - "!*_test.go"
+          - "!*_mock.go"
+          - "!**/mock_*.go"
+          - "!internal/crypto/"
+          - "!internal/kv/"
+          - "!internal/rpc/"
+          - "!internal/tcc/"
+          - "!token/init.go"
+        if_not_found: "success"
