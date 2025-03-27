@@ -1,6 +1,32 @@
 # Public Token SDK
- 
-## 使用：
-**import "github.com/kakark/public-token-sdk/token"** 
+## Install
 
-**`token.ValidateJWT`**：// ValidateJWT 首先校验 JWT 是否合法，然后解析出 payload，最后返回 payload 本身。
+```
+$ go get github.com/kakark/public-token-sdk@master
+```
+
+## Example
+
+### ValidateJWT 
+校验 JWT 是否合法，解析 payload
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/kakark/public-token-sdk/token"
+	"github.com/kakark/public-token-sdk/token/tokentype"
+)
+
+func main() {
+	payload, err := token.ValidateJWT(context.Background(), "eyJhbGciOiJFUzI1NiIsImZlYXR1cmVfY29kZSI6IkZlYXR1cmVPQXV0aEpXVFNpZ25fQk9FQ04iLCJraWQiOiI3NDg1MTU5NTQ1MDg2NDEwNzcyIiwidHlwIjoiSldUIn0.eyJqdGkiOiI3NDg2MzcxOTg1ODYyMTY0NTE1IiwiaWF0IjoxNzQzMDU2ODA4LCJleHAiOjE3NDMwNjQwMDgsInZlciI6InYxIiwidHlwIjoiYWNjZXNzX3Rva2VuIiwiY2xpZW50X2lkIjoiY2xpX2E3YTk4ZjllZWZmOGQwMmMiLCJzY29wZSI6ImF1dGg6dXNlci5pZDpyZWFkIiwiYXV0aF9pZCI6Ijc0ODYzNzE5NzI0NDAzOTE3MDAiLCJhdXRoX3RpbWUiOjE3NDMwNTY4MDQsImF1dGhfZXhwIjoxNzc0NTkyODA0LCJ1bml0IjoiYm9lY24iLCJ0ZW5hbnRfdW5pdCI6ImJvZWNuIiwib3BhcXVlIjp0cnVlLCJlbmMiOiJBaVFrQVFFQ0FNSURBQUVCQXdBQ0FRMEFBd3NMQUFBQUF3QUFBQWRHWldGMGRYSmxBQUFBRUc5aGRYUm9YMjl3WVhGMVpWOXFkM1FBQUFBSVZHVnVZVzUwU1dRQUFBQUJNQUFBQUFSVWFXMWxBQUFBQ2pFM05ESTNOelEwTURBUEFBUU1BQUFBQVFvQUFXUHVtUlhkUUVBVUN3QUNBQUFBRERDejk3R2R5bktTUUpzM2x3c0FBd0FBQURDaVo0VXIzRGFPQ0FCV1p5RXE1aldOSGN2NzU5Z2tCMzR0TU9HOHJ2N3dUL0JFMStNZ0M0bzg1cmVkMG9NMG0yOEFDd0FGQUFBQUJXSnZaV051QUNvVlpoQlN6THpNV2doZzMvd21tT0FWNWZMMDJ2Q3ZQY0pUYkFCS2RucE9tRHpRYmRnNitrVFJDMWlHYlF2UU1uZGRNeDJRemtIcFR6Vzc3cjAyOG44L0VLM0NTdHZ5RlRsZVlzNzg4clFmZlpCL1dnVUxDNndaOHRSN25FeDRxM0pzS1ZsWEYxYU9xYzlwMHNDNzhoN3BoYjQ5RkF1YWFxdXBWOC9WZTBCN2JRPT0iLCJlbmNfdmVyIjoidjEifQ.ts0zBzwtLrva-1zImOm-koPwDqZ5BnQY6fvNdv1cS5vU6quaBzwXAhUjkNEC6cGjERivlZV5HUB_dUWLOVMLDA", tokentype.AccessToken)
+	if err != nil {
+		return
+	}
+	fmt.Println(payload)
+}
+
+```
